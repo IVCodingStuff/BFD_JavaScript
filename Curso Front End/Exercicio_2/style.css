@@ -1,0 +1,22 @@
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(172, 109, 255);
+    color: white;
+    text-align: center;
+}
+h1{
+    color: rgb(134, 28, 255);
+    
+}
+button{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-color: rgb(162, 62, 255);
+    padding: 5px;
+    border-radius: 10%;
+    background-color: rgb(202, 145, 255);
+    color: rgb(255, 255, 255);
+}
+button:hover{
+   color: rgb(141, 2, 255);
+   font-family: Georgia, 'Times New Roman', Times, serif;
+}
