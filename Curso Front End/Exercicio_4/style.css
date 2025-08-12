@@ -1,0 +1,20 @@
+body{
+color: white;
+background-image: url(1361856.png);
+font-family: Georgia, 'Times New Roman', Times, serif;
+text-align: center;
+}
+h1{
+padding-top: 50px;
+}
+button{
+font-family: Georgia, 'Times New Roman', Times, serif;
+background-color: rgb(15, 104, 145);
+border-color: rgb(255, 255, 255);
+border-radius: 10%;
+font-size:100% ;
+padding: 10px;
+color: white;
+}
+
+
