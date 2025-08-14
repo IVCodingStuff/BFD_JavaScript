@@ -1,0 +1,15 @@
+body{
+color: black;
+background-color: rgb(255, 207, 188);
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+div{
+align-content: baseline;
+display: grid;
+width: 100px;
+}
+
+button{
+margin: 10px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
