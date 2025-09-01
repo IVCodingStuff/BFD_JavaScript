@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 2</title>
+</head>
+<body>
+    <form>
+        <input type="number" id="dia" placeholder="Digite o dia">
+        <input type="number" id="mes" placeholder="Digite o mês">
+        <input type="number" id="ano" placeholder="Digite o ano">
+    </form>
+    <br>
+    <button id="botao">Clique aqui</button>
+    <br>
+    <br>
+    <div id="resultado">
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>{
+        let btn = document.getElementById("botao");
+        const resultado = document.getElementById("resultado");
+
+            btn.addEventListener ("click",()=> {
+                let dia = Number(document.getElementById("dia").value);
+                let mes = Number(document.getElementById("mes").value);
+                let ano = Number(document.getElementById("ano").value);
+                let tamanho = palavra.length;
+                
+                resultado.innerHTML="";
+               for(let i = 0; i < tamanho; i++){
+
+                resultado.innerHTML += dia + " " + mes + " " + ano 
+               }
+               });
+        });
+
+
+    </script>
+</body>
+</html>

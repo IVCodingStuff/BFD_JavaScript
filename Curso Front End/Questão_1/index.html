@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 1</title>
+</head>
+<body>
+    <form>
+        <input type="text" id="string" placeholder="Digite algo...">
+    </form>
+    <br>
+    <button id="botao">Clique aqui</button>
+    <br>
+    <br>
+    <div id="resultado">
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>{
+        let btn = document.getElementById("botao");
+        const resultado = document.getElementById("resultado");
+
+            btn.addEventListener ("click",()=> {
+                let palavra = String(document.getElementById("string").value);
+                let tamanho = palavra.length;
+                
+                resultado.innerHTML="";
+                
+                for(let i = 0; i < tamanho; i++){
+
+                resultado.innerHTML += (i)+ "° " + palavra.charAt(i)+ "<br>";
+                console.log(palavra.charAt(i));
+                }
+                });
+        });
+
+
+    </script>
+</body>
+</html>
