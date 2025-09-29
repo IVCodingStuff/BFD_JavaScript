@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Algoritmo Genético - Demonstração</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f9; }
+    h1 { color: #333; }
+    button { padding: 10px 15px; margin: 10px 0; font-size: 16px; cursor: pointer; }
+    pre { background: #222; color: #0f0; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    canvas { margin-top: 20px; background: #fff; border: 1px solid #ccc; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Algoritmo Genético - Demonstração</h1>
+  <p>Problema: Maximizar <b>f(x) = x²</b>, com x ∈ [0,31] (5 bits).</p>
+  <button onclick="runGA()">Executar Algoritmo</button>
+
+  <h2>Saída</h2>
+  <pre id="output"></pre>
+
+  <h2>Evolução do Melhor Fitness</h2>
+  <canvas id="chart" width="600" height="300"></canvas>
+
+  <script>
+    // Parâmetros do AG
+    const CHROMOSOME_LENGTH = 5;
+    const POP_SIZE = 6;
+    const GENERATIONS = 10;
+    const MUTATION_RATE = 0.1;
+
+    function randomBit() {
+      return Math.random() < 0.5 ? '0' : '1';
+    }
+
+    function createIndividual() {
+      let s = '';
+      for (let i = 0; i < CHROMOSOME_LENGTH; i++) s += randomBit();
+      return s;
+    }
+
+    function binaryToInt(binStr) {
+      return parseInt(binStr, 2);
+    }
+
+    function fitness(ind) {
+      const x = binaryToInt(ind);
+      return x * x;
+    }
+
+    function selection(pop) {
+      return [...pop].sort((a, b) => fitness(b) - fitness(a)).slice(0, 2);
+    }
+
+    function crossover(p1, p2) {
+      const point = Math.floor(Math.random() * (CHROMOSOME_LENGTH - 1)) + 1;
+      const c1 = p1.slice(0, point) + p2.slice(point);
+      const c2 = p2.slice(0, point) + p1.slice(point);
+      return [c1, c2];
+    }
+
+    function mutate(ind) {
+      return ind.split('').map(bit =>
+        Math.random() < MUTATION_RATE ? (bit === '0' ? '1' : '0') : bit
+      ).join('');
+    }
+
+    function replaceWorst(pop, c1, c2) {
+      const sorted = [...pop].sort((a, b) => fitness(b) - fitness(a));
+      return sorted.slice(0, POP_SIZE - 2).concat([c1, c2]);
+    }
+
+    // Gráfico com Chart.js
+    let chart;
+    function updateChart(bestFitness) {
+      if (!chart) {
+        const ctx = document.getElementById("chart").getContext("2d");
+        chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: [],
+            datasets: [{
+              label: 'Melhor Fitness',
+              data: [],
+              borderColor: 'blue',
+              fill: false,
+              tension: 0.2
+            }]
+          },
+          options: {
+            scales: {
+              x: { title: { display: true, text: 'Geração' } },
+              y: { title: { display: true, text: 'Fitness' } }
+            }
+          }
+        });
+      }
+      chart.data.labels.push(chart.data.labels.length + 1);
+      chart.data.datasets[0].data.push(bestFitness);
+      chart.update();
+    }
+
+    // Execução do AG
+    function runGA() {
+      let output = "";
+      let population = Array.from({ length: POP_SIZE }, createIndividual);
+
+      // resetar gráfico
+      if (chart) {
+        chart.data.labels = [];
+        chart.data.datasets[0].data = [];
+        chart.update();
+      }
+
+      for (let gen = 0; gen < GENERATIONS; gen++) {
+        output += `\nGeração ${gen + 1}\n`;
+        population.forEach(ind => {
+          output += `Indivíduo ${ind} -> x=${binaryToInt(ind)} | fitness=${fitness(ind)}\n`;
+        });
+
+        const [p1, p2] = selection(population);
+        output += `Selecionados: ${p1}, ${p2}\n`;
+
+        let [c1, c2] = crossover(p1, p2);
+        c1 = mutate(c1);
+        c2 = mutate(c2);
+        output += `Filhos: ${c1}, ${c2}\n`;
+
+        population = replaceWorst(population, c1, c2);
+
+        const best = population.reduce((a, b) => fitness(a) > fitness(b) ? a : b);
+        updateChart(fitness(best));
+      }
+
+      const bestFinal = population.reduce((a, b) => fitness(a) > fitness(b) ? a : b);
+      output += `\n--- Resultado Final ---\n`;
+      output += `Melhor indivíduo: ${bestFinal}\n`;
+      output += `x=${binaryToInt(bestFinal)}, f(x)=${fitness(bestFinal)}\n`;
+
+      document.getElementById("output").textContent = output;
+    }
+  </script>
+</body>
+</html>
+
+
+Como usar
+
+Copie esse código em um arquivo algoritmo_genetico.html.
+
+Abra no navegador.
+
+Clique em “Executar Algoritmo”.
+
+Você verá:
+
+O log de cada geração (indivíduos, fitness, filhos gerados).
+
+Um gráfico interativo mostrando a evolução do melhor fitness ao longo das gerações.

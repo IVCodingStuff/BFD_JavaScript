@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+    color: #a30000;
+    text-align: center;
+}
+h1{
+    align-items: center;
+}
+img{
+    width:33%;
+    height: 33%;
+}
+
+svg {
+      width: 150px; /* Largura */
+      height: 150px; /* Altura */
+      margin-top: 20px; /* Espaço acima do SVG */
+    }
+
+a{
+    color: #a30000;
+}

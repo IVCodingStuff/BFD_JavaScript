@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+        body{
+            font-family:'Bitcount Grid Double Ink', 'Times New Roman', Times, serif;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        button{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="number" id="numero" placeholder="Insira sua nota...">
+        <br>
+        <button onclick="Nota()">Verificar nota</button>
+        <br>
+        <p id="resultado"></p>
+    </div>
+<script>
+        function Nota() {
+            let num = Number(document.getElementById('numero').value);
+            let resultado = document.getElementById('resultado');
+
+            if (num >= 7) {
+                resultado.innerHTML = "Você passou!";
+            } 
+            else if( num >= 5 && num < 7){
+                
+                resultado.innerHTML = "Você está de recuperação.";
+            }
+            else if(num < 5){
+                resultado.innerHTML = "Você está reprovado.";
+            }
+        }
+    </script>
+    </script>
+</body>
+</html>

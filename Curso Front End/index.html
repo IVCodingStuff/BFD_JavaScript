@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="numero">
+    <br>
+    <button onclick="ParImpar()">Verificar número</button>
+    br
+    <p id="resultado"></p>
+<script>
+        function ParImpar() {
+            let num = Number(document.getElementById('numero').value);
+            let resultado = document.getElementById('resultado');
+
+            if (num % 2 === 0) {
+                resultado.innerHTML = "O número digitado é <b>par</b>.";
+            } else {
+                resultado.innerHTML = "O número digitado é <b>ímpar</b>.";
+            }
+        }
+    </script>
+    </script>
+</body>
+</html>

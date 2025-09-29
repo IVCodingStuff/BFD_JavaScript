@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            font-family:'Bitcount Grid Double Ink', 'Times New Roman', Times, serif;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        button, input{
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body> 
+    <div>
+        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="senha" placeholder="Senha">
+        <button onclick="Login()">Entrar</button>
+        <p id="resultado"></p>
+    </div>
+<script>
+    function Login(){
+        let email = document.getElementById('email').value;
+        let senha = document.getElementById('senha').value;
+        
+        if (email == 'isabellynascimento235@gmail.com' && senha == 'admin123'){
+            resultado.innerHTML = 'Login realizado com sucesso'
+        }
+        else{
+            resultado.innerHTML = 'Usuário ou senha incorretos'
+        }
+    }
+</script>
+</body>
+</html>
